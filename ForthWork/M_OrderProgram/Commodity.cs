@@ -19,7 +19,8 @@ namespace M_OrderProgram
 
         public override string ToString()
         {
-            return CommodityName +" "+ CommodityPrice+"yuan";
+            return CommodityName +" "+ CommodityPrice+"yuan" +
+                "";
         }
 
     }

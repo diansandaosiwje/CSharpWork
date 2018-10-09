@@ -20,21 +20,44 @@ namespace M_OrderProgram
             orderLists.Remove(order);
         }
 
-        public void ModifyOrder() { }
-
-        public Order SearchOrder(string orderName)
+        public void ModifyOrder(Order order)
         {
+            order.DeleteCommodity(order.OrderDetailsList[0]);
+            order.AddCommodity(new OrderDetails(CommodityList.commodities[0], 5));
+            order.ChangeTheCustomer("529pou");
+            order.ChangeTheNumOfCommodity(order.OrderDetailsList[0].commodity, 6);
 
-            return  
+
+
         }
 
-        public Order SearchOrder(int orderNumber)
+        public Order SearchOrder(string commodityName)
         {
+            foreach(Order order in orderLists)
+            {
+               foreach (OrderDetails orderDetails in order.OrderDetailsList)
+                {
+                    if(orderDetails.commodity.CommodityName==commodityName)
+                    {
+                        return order;
 
-            return  
+                    }
+                }
+            }
+            return null;
         }
 
-        
+        public Order SearchOrder(int orderIDNumber)
+        {
+            foreach(Order order in orderLists)
+            {
+                if(order.OrderIDNumber==orderIDNumber)
+                {
+                    return order;
+                }
+            }
+            return null;
+        }    
 
 
 

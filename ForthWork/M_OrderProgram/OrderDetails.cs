@@ -20,7 +20,7 @@ namespace M_OrderProgram
 
         }
 
-        private Commodity commodity;
+        public Commodity commodity;
 
         private int commodityNum;     
 

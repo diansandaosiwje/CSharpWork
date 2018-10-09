@@ -15,16 +15,61 @@ namespace M_OrderProgram
             this.OrderDetailsList = orderDetails;
         }
 
-        private int OrderIDNumber; 
+        private int orderIDNumber; 
+        public int OrderIDNumber
+        {
+            set
+            {
+                orderIDNumber = value;
+            }
+            get
+            {
+                return orderIDNumber;
+            }
+        }
 
-        private string Customer;
+        private string customer;
+        public string Customer
+        {
+            set
+            {
+                customer = value;
+            }
+            get
+            {
+                return customer;
+            }
+        }
 
-        private List<OrderDetails> OrderDetailsList = new List<OrderDetails>();  
+        public List<OrderDetails> OrderDetailsList = new List<OrderDetails>();  
+
         
         public void AddCommodity(OrderDetails orderDetails)
         {
             this.OrderDetailsList.Add(orderDetails);
         }
 
+        public void DeleteCommodity(OrderDetails orderDetails)
+        {
+            this.OrderDetailsList.Remove(orderDetails);
+        }
+
+        public void ChangeTheCustomer(string customer)
+        {
+            this.Customer = customer;
+        }
+
+        public void ChangeTheNumOfCommodity(Commodity commodity,int num)
+        {
+            foreach (OrderDetails orderDetails in OrderDetailsList )
+            {
+                if(orderDetails.commodity==commodity)
+                {
+                    orderDetails.CommodityNum = num;
+                }
+            }
+        }
+
+      
     }
 }
