@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "No.4", "FirstWeek\No.4.csproj", "{36796125-FD24-4748-AA9E-4A4C093138F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "No.4", "No.4\No.4.csproj", "{36796125-FD24-4748-AA9E-4A4C093138F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "No.5", "FormsTest\No.5.csproj", "{EC81CDAB-52C9-4C04-989A-6069626C0BCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "No.5", "No.5\No.5.csproj", "{EC81CDAB-52C9-4C04-989A-6069626C0BCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,10 +13,10 @@ namespace No._9
         static void Main(string[] args)
         {
             //创建空
-            List<int> numList = new List<int>(99);
+            List<int> numList = new List<int>(maxNum-1);
 
             //初始化
-            for(int i=2;i<=100;i++)
+            for(int i=2;i<=maxNum;i++)
             {
                 numList.Add(i);
             }
