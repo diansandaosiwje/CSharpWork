@@ -10,13 +10,17 @@ namespace M_OrderProgram
 {
     public class OrderService
     {
-        public List<Order> orderList;          //改成dictionary了
+        public List<Order> orderList;         
 
         public OrderService()
         {
             orderList = new List<Order>();
         }
 
+        public List<Order> queryAllOrders()
+        {
+            return orderList;
+        }
         public void AddOrder(Order order)
         {
             if (orderList.Count == 0)
@@ -49,7 +53,7 @@ namespace M_OrderProgram
         public List<Order> GetByCommodityName(string commodityName)        //原来只返回查找的第一个值。。。。。改了
         {
             var query = orderList.Where(order =>
-              order.OrderDetailsList.Where(d => d.Commodity.Name == commodityName)
+              order.Details.Where(d => d.Commodity.Name == commodityName)
               .Count() > 0
           );
             return query.ToList();
@@ -73,9 +77,14 @@ namespace M_OrderProgram
             return query.ToList();
         }
 
-        public void Export()
+        public List<Order> GetByPrice(double price)
         {
-            string filename="OrderXmlFile.xml";
+            var query = orderList.Where(order => order.Amount > price);
+            return query.ToList();
+        }
+
+        public void Export(string filename="123.xml")
+        {
             FileStream fs = new FileStream(filename, FileMode.Create);
             XmlSerializer xmlser = new XmlSerializer(typeof(List<Order>));
             xmlser.Serialize(fs,this.orderList );
