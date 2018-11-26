@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.Xsl;
+using System.Xml.XPath;
 
 namespace M_OrderProgram
 {
     public class OrderService
     {
-        public List<Order> orderList;         
+        public List<Order> orderList;        
 
         public OrderService()
         {
@@ -39,7 +42,7 @@ namespace M_OrderProgram
             orderList.Add(order);
         }
 
-        public void RemoveOrder(uint orderId)
+        public void RemoveOrder(ulong orderId)
         {
             foreach (Order order1 in orderList)
             {
@@ -48,7 +51,7 @@ namespace M_OrderProgram
                     orderList.Remove(order1);
                     break;
                 }
-             }
+            }
         }
         
 
@@ -67,10 +70,12 @@ namespace M_OrderProgram
             foreach(Order order in orderList)
             {
                 if (order.Id == orderIDNumber)
+                {
                     order1 = order;
-                return order1;
+                    return order1;
+                }               
             }
-            throw new Exception ("There is no such id");         
+            return null;        
         }  
         
         public List<Order> GetByCustomerName(string customerName)
@@ -109,6 +114,41 @@ namespace M_OrderProgram
             }
            
             fs.Close();
+        }
+
+        public void exportToHtml(string fileName)
+        {
+            try
+            {
+                Export();
+
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"123.xml");
+
+                
+                XPathNavigator nav = doc.CreateNavigator();
+                nav.MoveToRoot();
+
+                XslCompiledTransform xt = new XslCompiledTransform();
+                xt.Load(@"..\..\OrderToHTML.xslt");
+
+
+                FileStream oStream =File.OpenWrite(fileName);
+
+                XmlTextWriter writer = new XmlTextWriter(oStream, Encoding.UTF8);
+                xt.Transform(nav, null, writer);
+
+                oStream.Close();                
+            }
+            catch(XmlException e)
+            {
+                Console.WriteLine("XML Exception" + e.ToString());
+            }
+            catch(XsltException e)
+            {
+                Console.WriteLine("XSLT Exception:" + e.ToString());
+            }
         }
 
     }
