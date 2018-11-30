@@ -11,6 +11,7 @@ namespace Crawler
     {
         static void Main(string[] args)
         {
+
             String startUrl = "http://www.cnblogs.com/dstang2000/";
             Crawler crawler1 = new Crawler();
             crawler1.Start(startUrl, 20);
